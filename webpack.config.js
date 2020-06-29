@@ -7,18 +7,21 @@ module.exports = {
   entry: './src/js/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'js/main.js',
+    filename: 'main.js',
   },
   module:{
     rules: [
       {
-        test: /\.css/,
+        test: /\.(css|sass|scss)/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
           },
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
+          },
+          {
+            loader: 'sass-loader',
           }
         ]
       },
@@ -42,6 +45,11 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './src/templates/index.html',
+      filename: 'index.html'
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/templates/access.html',
+      filename: 'access.html'
     }),
     new CleanWebpackPlugin(),
   ],
